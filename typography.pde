@@ -11,30 +11,51 @@ import geomerative.*;
 
 String message = "the quick brown fox jumps over the lazy dog";
 Selector selector;
-PFont font;
-Font[] particles;
-int quantity = 100;
-char[] letters = {'L', 'O', 'V', 'E'};
-String text;
+Font f;
+//Font[] particles;
+//int quantity = 100;
+//String text;
 
 void setup() {
   size(600, 400);
+  frameRate(24);
   selector = new Selector(width/2, height/2, 50);
-  font = createFont("Amarillo.ttf", 20);
-  textAlign(CENTER);
+  // enable smoothing
   smooth();
-  strokeWeight(1);
-  particles = new Font[quantity];
+  /*particles = new Font[quantity];
   for (int i = 0; i < quantity; i++) {
     particles[i] = new Font();
   }
-  RCommand.setSegmentator(RCommand.UNIFORMLENGTH);
+  RCommand.setSegmentator(RCommand.UNIFORMLENGTH);*/
+  
+  // initialize library
+  RG.init(this);
+  f = new Font();
 }
 
 void draw() {
   background(229, 230, 224);
   selector.display();
   selector.mouseover(mouseX, mouseY);
+  f.display();
+  /*RFont rfont;
+  RGroup rgroup;
+  RPoint[] rpoints;
+  rfont = new RFont("Amarillo.ttf", 32, RFont.CENTER);
+  rgroup = rfont.toGroup(message);
+  rgroup = rgroup.toPolygonGroup();
+  rpoints = rgroup.getPoints();
+  for (int i = 0; i < quantity; i++) {
+    int num = int(i/quantity*rpoints.length);
+    particles[i].setPos(int(rpoints[num].x + width/2), int(rpoints[num].y + height/2));
+  }
+  stroke(0);
+  fill(0);
+  ellipse(0, 0, width, height);
+  fill(.9 - random(.2) - float(mouseX)/1200, .5 + random(.5), 1);
+  for (int i = 0; i < quantity; i++) {
+    particles[i].display();
+  }*/
 }
 
 void mousePressed() {
