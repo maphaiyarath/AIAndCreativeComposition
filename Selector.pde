@@ -30,7 +30,7 @@ class Selector {
   }
   
   boolean mouseover(int mx, int my) {
-    if ((mx == mouseX) && (my == mouseY)) {
+    if ((x == mouseX) && (y == mouseY)) {
       mouseover = true;
     } else {
       mouseover = false;
