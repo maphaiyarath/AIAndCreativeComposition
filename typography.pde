@@ -12,6 +12,8 @@ import geomerative.*;
 String message = "the quick brown fox jumps over the lazy dog";
 Selector selector;
 Font f;
+PFont fonz;
+Population pop;
 //Font[] particles;
 //int quantity = 100;
 //String text;
@@ -19,7 +21,9 @@ Font f;
 void setup() {
   size(600, 400);
   frameRate(24);
-  selector = new Selector(width/2, height/2, 50);
+  int max = 10;
+  float rate = 0.05;
+  selector = new Selector(50, 100, 50);
   // enable smoothing
   smooth();
   /*particles = new Font[quantity];
@@ -30,14 +34,18 @@ void setup() {
   
   // initialize library
   RG.init(this);
+  fonz = createFont("Arial.ttf", 50);
   f = new Font();
+  pop = new Population(rate, max);
 }
 
 void draw() {
   background(229, 230, 224);
-  //selector.display();
+  selector.display();
   selector.mouseover(mouseX, mouseY);
   f.display();
+  pop.display();
+  pop.mouseover(mouseX, mouseY);
   /*
   rfont = new RFont("Amarillo.ttf", 32, RFont.CENTER);
   rgroup = rfont.toGroup(message);
@@ -58,7 +66,8 @@ void draw() {
 
 void mousePressed() {
   if (selector.clicked(mouseX, mouseY)) {
-    //
+    pop.select();
+    pop.repop();
   }
 }
 
