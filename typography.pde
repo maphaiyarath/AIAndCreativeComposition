@@ -41,31 +41,22 @@ void setup() {
 
 void draw() {
   background(229, 230, 224);
-  selector.display();
-  selector.mouseover(mouseX, mouseY);
+  
+  // logic not right for button
+  // selector.display();
+  selector.mouseover();
   f.display();
   pop.display();
   pop.mouseover(mouseX, mouseY);
-  /*
-  rfont = new RFont("Amarillo.ttf", 32, RFont.CENTER);
-  rgroup = rfont.toGroup(message);
-  rgroup = rgroup.toPolygonGroup();
-  rpoints = rgroup.getPoints();
-  for (int i = 0; i < quantity; i++) {
-    int num = int(i/quantity*rpoints.length);
-    particles[i].setPos(int(rpoints[num].x + width/2), int(rpoints[num].y + height/2));
+  
+  // would rather save as .ttf
+  if (frameCount % 24 == 0) {
+    saveFrame("data/text-###.png");
   }
-  stroke(0);
-  fill(0);
-  ellipse(0, 0, width, height);
-  fill(.9 - random(.2) - float(mouseX)/1200, .5 + random(.5), 1);
-  for (int i = 0; i < quantity; i++) {
-    particles[i].display();
-  }*/
 }
 
 void mousePressed() {
-  if (selector.clicked(mouseX, mouseY)) {
+  if (selector.clicked()) {
     pop.select();
     pop.repop();
   }

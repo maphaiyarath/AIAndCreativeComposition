@@ -5,7 +5,7 @@ class Font {
   int x, y;
   int border = 50;
   RFont rfont;
-  RShape group = RG.getText("Hello", "Arial.ttf", 150, CENTER);
+  RShape group = RG.getText("Genetic", "Amarillo.ttf", 120, CENTER);
   RPoint[] points;
   color pink = color(245, 179, 191);
   
@@ -24,7 +24,7 @@ class Font {
   }
   
   void render() {
-    //
+    // this is where you should vary the different indices in info array
   }
   
   float getFitness() {
@@ -69,6 +69,8 @@ class Font {
       }
     }
   }
+  
+  // how to save font? geomerative only offers saving file as 
   
   /*void setPos(int x, int y) {
     this.x = x;

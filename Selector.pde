@@ -1,27 +1,32 @@
+/* Acts as button for user to indicate their choice(s) of font
+ */
+
 class Selector {
-  boolean clicked, mouseover;
-  int x, y, d;
+  boolean clicked, mouseover; // mouse events
+  int x, y, d;                // x, y, diameter
   
+  // constructor
   Selector(int x, int y, int d) {
     this.x = x;
     this.y = y;
     this.d = d;
   }
   
+  // draw selector button
   void display() {
     noFill();
-    stroke(1);
+    stroke(0);
     if (clicked) {
-      fill(.5);
+      fill(0);
     }
     if (mouseover) {
-      fill(1);
+      fill(255/2);
     }
     ellipse(x, y, d, d);
   }
   
-  boolean clicked(int mx, int my) {
-    if ((mx == mouseX) && (my == mouseY)) {
+  boolean clicked() {
+    if ((x == mouseX) && (y == mouseY)) {
       clicked = true;
     } else {
       clicked = false;
@@ -29,8 +34,9 @@ class Selector {
     return clicked;
   }
   
-  boolean mouseover(int mx, int my) {
-    if ((x == mouseX) && (y == mouseY)) {
+  boolean mouseover() {
+    // logic is not right for when mouse is over selector
+    if ((x-d/2 >= mouseX) && (mouseX <= x+d/2) && (y-d/4 >= mouseY) && (mouseY <= y+d/4)) {
       mouseover = true;
     } else {
       mouseover = false;

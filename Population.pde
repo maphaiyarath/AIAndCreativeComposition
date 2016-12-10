@@ -1,9 +1,9 @@
 class Population {
-  float rate;
-  int max;
-  Font[] pop;
-  ArrayList fittest;
-  int cycles;
+  float rate;         // rate at which font style changes / mutates
+  int max;            // capacity / number of fonts in cycle
+  Font[] pop;         // group of fonts in cycle
+  ArrayList fittest;  // fonts that 'survive'
+  int cycles;         // different epochs
   
   Population(float rate, int max) {
     this.rate = rate;
@@ -12,22 +12,25 @@ class Population {
     fittest = new ArrayList();
     cycles = 0;
     for (int i = 0; i < pop.length; i++) {
-      pop[i] = new Font(new FontInfo(), 50 + i * 75, height/2);
+      pop[i] = new Font(new FontInfo(), 50 + i * 75, height/3);
     }
   }
   
+  // draw each font in cycle
   void display() {
     for (int i = 0; i < pop.length; i++) {
       pop[i].render();
     }
   }
   
+  // call mouseover function for each font
   void mouseover(int mx, int my) {
     for (int i = 0; i < pop.length; i++) {
       pop[i].mouseover(mx, my);
     }
   }
   
+  // need to implement interactive way to select font...
   void select() {
     fittest.clear();
     float totalFitness = getTotalFitness();
@@ -40,6 +43,7 @@ class Population {
     }
   }
   
+  // generate new collection of fonts based on ones you've chosen
   void repop() {
     for (int i = 0; i < pop.length; i++) {
       int font1 = int(random(fittest.size()));
@@ -50,7 +54,7 @@ class Population {
       FontInfo info2 = new2.getInfo();
       FontInfo offspring = info1.crossover(info2);
       offspring.evolve(rate);
-      pop[i] = new Font(offspring, 50 + i * 75, height/2);
+      pop[i] = new Font(offspring, 50 + i * 75, height/3);
     }
     cycles++;
   }
