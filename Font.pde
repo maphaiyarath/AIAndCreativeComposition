@@ -5,18 +5,15 @@ class Font {
   int x, y;
   int border = 50;
   RFont rfont;
-  RShape group = RG.getText("Hello", "Amarillo.ttf", 100, CENTER);
+  RShape group = RG.getText("Hello", "Arial.ttf", 150, CENTER);
   RPoint[] points;
   color pink = color(245, 179, 191);
-  /*PFont font = createFont("Amarillo.ttf", 20);
-  char[] letters = {'L', 'O', 'V', 'E'};*/
   
   Font() {
     textAlign(CENTER);
     strokeWeight(1);
     stroke(0);
     fill(pink);
-
   }
   
   Font(FontInfo info, int x, int y) {
@@ -30,10 +27,28 @@ class Font {
     //
   }
   
+  float getFitness() {
+    return fitness;
+  }
+  
+  FontInfo getInfo() {
+    return info;
+  }
+  
+  void mouseover(int mx, int my) {
+    ellipse(int(x - border/2), int(y - border/2), int(border), int(border));
+    if ((x == mouseX) && (y == mouseY)) {
+      mouseover = true;
+      fitness += 0.25;
+    } else {
+      mouseover = false;
+    }
+  }
+  
   void display() {
     translate (width/2, 3*height/4);
     noFill();
-    stroke(0, 0, 200, 150);
+    stroke(0, 20);
     RG.setPolygonizer(RG.ADAPTATIVE);
     group.draw();
     RG.setPolygonizer(RG.UNIFORMLENGTH);
@@ -41,16 +56,16 @@ class Font {
     points = group.getPoints();
     if(points != null) {
       noFill();
-      stroke(0, 200, 0);
+      stroke(133, 148, 153);
       beginShape();
       for (int i = 0; i < points.length; i++) {
         vertex(points[i].x, points[i].y);
       }
       endShape();
-      fill(0);
-      stroke(0);
+      fill(pink);
+      stroke(245, 179, 191);
       for (int i = 0; i < points.length; i++) {
-        ellipse(points[i].x, points[i].y, 3, 3);
+        ellipse(points[i].x, points[i].y, 5, 5);
       }
     }
   }

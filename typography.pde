@@ -35,12 +35,10 @@ void setup() {
 
 void draw() {
   background(229, 230, 224);
-  selector.display();
+  //selector.display();
   selector.mouseover(mouseX, mouseY);
   f.display();
-  /*RFont rfont;
-  RGroup rgroup;
-  RPoint[] rpoints;
+  /*
   rfont = new RFont("Amarillo.ttf", 32, RFont.CENTER);
   rgroup = rfont.toGroup(message);
   rgroup = rgroup.toPolygonGroup();
